@@ -29,7 +29,7 @@
                 return response.text();
             })
             .then(data => {
-                document.getElementById('pi-content').textContent = data;
+                document.getElementById('pi-content').textContent = '3.' + data;
             })
             .catch(error => {
                 document.getElementById('pi-content').textContent = "Could not load Pi digits.";
