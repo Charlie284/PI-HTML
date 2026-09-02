@@ -1,47 +1,37 @@
-10 Million Digits of Pi (HTML and TXT)
+# 10 Million Digits of Pi
 
-This repository contains the first 10,000,000 digits of the mathematical constant pi, provided in two formats: a self-contained HTML file for browser viewing and a plain text file containing the raw digits.
+This repository contains the first 10,000,000 digits after the decimal point of π in
+`Pi.txt`, plus a small browser viewer in `index.html`.
 
-Both files are static, offline-ready, and require no external dependencies.
+## Contents
 
-Contents
+- `Pi.txt` is an ASCII dataset containing exactly 10,000,000 decimal digits. It omits the
+  leading `3.` so programs can consume the fractional digits directly.
+- `index.html` uses JavaScript to fetch `Pi.txt` and render `3.` followed by the dataset.
 
-HTML file: Displays all digits of pi directly in a web browser, with no scripts, frameworks, or network access required.
+Both files work offline once downloaded. The browser viewer has no third-party dependencies, but
+it is not a self-contained HTML document: it requires `Pi.txt` beside it and must be served over
+HTTP because browsers commonly block `fetch` from `file://` pages.
 
-TXT file: Contains the raw 10,000,000 digits of pi for direct reference, parsing, or archival use.
+## View in a browser
 
-Purpose
+From the repository directory, start a local server:
 
-This project exists as a static reference and demonstration of large numerical data handling. Potential uses include:
+```sh
+python3 -m http.server 8000
+```
 
-Educational exploration of pi
+Then open <http://localhost:8000>. You can open `Pi.txt` directly in a text editor or process it
+with any tool that can handle a roughly 10 MB text file.
 
-Browser and text editor stress testing
+## Verify the dataset
 
-Offline access to high-precision numerical data
+The test suite protects the digit count, numeric format, known prefix, and SHA-256 checksum:
 
-Data reference or experimentation
+```sh
+python3 -m unittest discover -s tests -v
+```
 
-Usage
+## License
 
-Open the HTML file in any modern web browser to view the digits visually.
-
-Open the TXT file in a text editor or process it programmatically as needed.
-
-No installation, build steps, or tooling are required.
-
-Scope and Maintenance
-
-This repository is intentionally final. It includes a single release, and no future updates, additions, or corrections are planned.
-
-Notes
-
-All digits are included directly in both files.
-
-No compression, generation scripts, or external resources are used.
-
-Large file size may impact performance depending on your system and software.
-
-License
-
-See the LICENSE file for usage and redistribution terms.
+See [LICENSE](LICENSE) for usage and redistribution terms.
