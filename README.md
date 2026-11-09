@@ -1,37 +1,32 @@
-# 10 Million Digits of Pi
+# PI-HTML
 
-This repository contains the first 10,000,000 digits after the decimal point of π in
-`Pi.txt`, plus a small browser viewer in `index.html`.
+A viewer for ten million digits of pi.
 
-## Contents
+Built with Vite, React, TypeScript, Tailwind CSS, React Router, Framer Motion, and Lenis. Existing content and core interactions are preserved in React components; browser and canvas work uses TypeScript modules.
 
-- `Pi.txt` is an ASCII dataset containing exactly 10,000,000 decimal digits. It omits the
-  leading `3.` so programs can consume the fractional digits directly.
-- `index.html` uses JavaScript to fetch `Pi.txt` and render `3.` followed by the dataset.
+## Run
 
-Both files work offline once downloaded. The browser viewer has no third-party dependencies, but
-it is not a self-contained HTML document: it requires `Pi.txt` beside it and must be served over
-HTTP because browsers commonly block `fetch` from `file://` pages.
-
-## View in a browser
-
-From the repository directory, start a local server:
+Use Node.js 24 or newer.
 
 ```sh
-python3 -m http.server 8000
+npm ci
+npm run dev
 ```
 
-Then open <http://localhost:8000>. You can open `Pi.txt` directly in a text editor or process it
-with any tool that can handle a roughly 10 MB text file.
-
-## Verify the dataset
-
-The test suite protects the digit count, numeric format, known prefix, and SHA-256 checksum:
+## Check and build
 
 ```sh
-python3 -m unittest discover -s tests -v
+npm run typecheck
+npm run build
+python -m unittest discover -s tests
 ```
+
+`npm run preview` serves the production build locally. Publish the contents of `dist/`. The build emits HTML entry aliases for the former `.html` URLs and clean route URLs, plus a `404.html` fallback. `_redirects` supports hosts that understand SPA rewrites.
+
+For a subdirectory deployment, set `VITE_BASE_PATH=/repository-name/` when building. Keep the trailing slash. React Router and local asset URLs use this base.
+
+Lenis smooth scrolling and Framer Motion page transitions respect reduced-motion preferences. Tailwind utilities are enabled without a reset so the original styling remains intact.
 
 ## License
 
-See [LICENSE](LICENSE) for usage and redistribution terms.
+See [LICENSE](LICENSE).
