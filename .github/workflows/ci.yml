@@ -17,3 +17,17 @@ jobs:
         with:
           python-version: "3.13"
       - run: python -m unittest discover -s tests -v
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check Pi.txt is shipped unchanged in the build output
+        run: cmp public/Pi.txt dist/Pi.txt

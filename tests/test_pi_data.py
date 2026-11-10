@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-PI_PATH = REPOSITORY_ROOT / "Pi.txt"
+PI_PATH = REPOSITORY_ROOT / "public" / "Pi.txt"
 
 
 class PiDataTests(unittest.TestCase):
