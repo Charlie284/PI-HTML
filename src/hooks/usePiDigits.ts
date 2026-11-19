@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
-const PI_URL = `${import.meta.env.BASE_URL}Pi.txt`
+export const PI_URL = `${import.meta.env.BASE_URL}Pi.txt`
 
 export type PiDigitsState =
   | { status: 'loading' }
   | { status: 'error' }
   | { status: 'ready'; text: string }
 
-/** Fetches the static Pi.txt dataset and prefixes it with the leading "3.". */
+/** Fetches the fractional digits from the static Pi.txt dataset. */
 export function usePiDigits(): PiDigitsState {
   const [state, setState] = useState<PiDigitsState>({ status: 'loading' })
 
@@ -20,7 +20,7 @@ export function usePiDigits(): PiDigitsState {
         return response.text()
       })
       .then((data) => {
-        setState({ status: 'ready', text: `3.${data}` })
+        setState({ status: 'ready', text: data })
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted) return

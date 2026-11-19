@@ -9,8 +9,8 @@ React Router, Framer Motion and Lenis.
 - `public/Pi.txt` is an ASCII dataset containing exactly 10,000,000 decimal digits. It omits the
   leading `3.` so programs can consume the fractional digits directly. Vite serves it as a static
   asset (`/Pi.txt`) and copies it unchanged into `dist/`.
-- `src/` is the React viewer: it fetches `Pi.txt` at runtime and renders `3.` followed by the
-  dataset.
+- `src/` is the React viewer: it fetches `Pi.txt` at runtime and displays 10,000 decimal digits per
+  page, with `3.` on the first page. The complete dataset is also available to download.
 - `tests/test_pi_data.py` validates the dataset.
 
 The viewer has no backend; any static file host works.
